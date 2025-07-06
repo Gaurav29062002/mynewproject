@@ -14,7 +14,7 @@ app.use(express.json());
 app.post('/generate', async (req, res) => {
   try {
     const prompt = `
-generate flirty line
+generate flirty line for my crush
 `;
 
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -26,7 +26,7 @@ generate flirty line
       body: JSON.stringify({
         model: "mistralai/mistral-7b-instruct", // or try "openai/gpt-3.5-turbo"
         messages: [
-          { role: "system", content: "generate flirty line" },
+          { role: "system", content: "generate flirty line for my crush" },
           { role: "user", content: prompt }
         ],
         temperature: 0.9
