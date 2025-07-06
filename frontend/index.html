@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Just One Line for You ❤️</title>
+  <style>
+    body {
+      background: #fff0f6;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      color: #d6336c;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #f06595;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    button:hover {
+      background-color: #e64980;
+    }
+    #line {
+      margin-top: 30px;
+      font-size: 20px;
+      color: #333;
+      max-width: 80%;
+    }
+  </style>
+</head>
+<body>
+  <h1>One Cute Line Just for You ✨</h1>
+  <button onclick="getLine()">Click Me ❤️</button>
+  <p id="line">👇 Your flirty line will appear here...</p>
+
+  <script>
+    async function getLine() {
+      const lineElement = document.getElementById("line");
+      lineElement.textContent = "Thinking of something sweet for you...";
+
+      try {
+        const res = await fetch('http://localhost:5000/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        const data = await res.json();
+        lineElement.textContent = data.line || "Oops! Couldn't get a line 😢";
+      } catch (err) {
+        console.error(err);
+        lineElement.textContent = "Couldn't load a line... but you're still the cutest 💕";
+      }
+    }
+  </script>
+</body>
+</html>
